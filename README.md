@@ -30,3 +30,21 @@ Based on the paper https://arxiv.org/pdf/1706.06083.pdf
     - [ ] Fashion-MNIST dataset?
     - [ ] UCI Adult dataset?
 - [ ] This should be in a Jupyter notebook
+
+
+## Presentation
+Who are the authors, and the date and venue of publication?
+
+What is the problem that is addressed (pick one, if the paper addresses more than one), and why is it interesting or useful?
+
+What is the main result of the paper?
+
+Describe the result or algorithm and motivate it intuitively.
+
+What is the cost (time, space, or some other metric) of this algorithm, and how does it compare to prior algorithms for the same problem? (and similarly, for non-algorithmic results)
+What performance guarantees, if any, are provided for the algorithm?
+
+Give an accurate description of the analysis given in the paper: in simple cases this may be a tour through the entire argument; when this is not possible, focus on explaining a core lemma/theorem that supports the claim of the paper.
+
+Provide an empirical evaluation of the algorithm: compare its performance to reasonable baselines, and explore relevant aspects of the algorithm (its variability, sensitivity to relevant properties of the input, etc.). If presenting a non-algorithmic result and it is possible, provide some experimental evidence of its sharpness or lack thereof.
+

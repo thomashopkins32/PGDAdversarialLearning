@@ -4,9 +4,9 @@ Projected Gradient Descent for Adversarial Learning
 Based on the paper https://arxiv.org/pdf/1706.06083.pdf
 
 ## Empirical Evaluation of PGD Attack on ImageNet (not in order):
-- [ ] Create scripts for downloading and preprocessing ImageNet dataset https://www.image-net.org/download.php
-    - [ ] download script (tensorflow or keras may have these already)
-    - [ ] preprocess script
+- [x] Create scripts for downloading and preprocessing ImageNet dataset https://www.image-net.org/download.php
+    - [x] download script (tensorflow or keras may have these already)
+    - [x] preprocess script
 - [ ] Find neural network architecture that achieves high accuracy on ImageNet
     - [ ] Find paper that describes architecture (and hopefully hyperparameters)
     - [ ] Implement architecture and train it without adversarial examples

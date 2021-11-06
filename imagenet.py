@@ -25,11 +25,11 @@ download_and_prepare_kwargs = {
     'download_dir': os.path.join(write_dir, 'downloaded'),
     'download_config': download_config,
 }
-ds = tfds.load('imagenet2012_subset', 
-               data_dir=os.path.join(write_dir, 'data'),         
-               split='train', 
-               shuffle_files=False, 
-               download=True, 
+ds = tfds.load('imagenet2012_subset',
+               data_dir=os.path.join(write_dir, 'data'),
+               split=('train', 'test'),
+               shuffle_files=False,
+               download=True,
                as_supervised=True,
                download_and_prepare_kwargs=download_and_prepare_kwargs)
 

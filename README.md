@@ -1,4 +1,4 @@
-# PGDAdversarialLearning
+# PGD Adversarial Learning
 Projected Gradient Descent for Adversarial Learning
 
 Based on the paper https://arxiv.org/pdf/1706.06083.pdf
@@ -10,9 +10,9 @@ torchvision.datasets.CIFAR100(root: str, train: bool = True, transform: Optional
 ```
 
 ## Empirical Evaluation of PGD Attack on CIFAR-100 (not in order):
-- [] Create scripts for downloading and preprocessing CIFAR-100 dataset (see above)
-    - [] download script
-    - [] preprocess script
+- [ ] Create scripts for downloading and preprocessing CIFAR-100 dataset (see above)
+    - [ ] download script
+    - [ ] preprocess script
 - [ ] Find neural network architecture that achieves high accuracy on CIFAR-100
     - [ ] Find paper that describes architecture (and hopefully hyperparameters)
     - [] Implement architecture and train it without adversarial examples
@@ -33,6 +33,7 @@ torchvision.datasets.CIFAR100(root: str, train: bool = True, transform: Optional
 ## Problem Set
 - [ ] Develop a problem set similar to homeworks that go through the math
 - [ ] Develop a set of simple experiments that show PGD attacks in action
+    - [ ] MNIST dataset?
     - [ ] Fashion-MNIST dataset?
     - [ ] UCI Adult dataset?
 - [ ] This should be in a Jupyter notebook

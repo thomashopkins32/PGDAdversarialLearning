@@ -3,24 +3,30 @@ Projected Gradient Descent for Adversarial Learning
 
 Based on the paper https://arxiv.org/pdf/1706.06083.pdf
 
-## Empirical Evaluation of PGD Attack on ImageNet (not in order):
-- [x] Create scripts for downloading and preprocessing ImageNet dataset https://www.image-net.org/download.php
-    - [x] download script (tensorflow or keras may have these already)
-    - [x] preprocess script
-- [ ] Find neural network architecture that achieves high accuracy on ImageNet
+## Issues
+- ImageNet is too big. We should use CIFAR-100 instead. It is available using torchvision as follows:
+```python3
+torchvision.datasets.CIFAR100(root: str, train: bool = True, transform: Optional[Callable] = None, target_transform: Optional[Callable] = None, download: bool = False)
+```
+
+## Empirical Evaluation of PGD Attack on CIFAR-100 (not in order):
+- [] Create scripts for downloading and preprocessing CIFAR-100 dataset (see above)
+    - [] download script
+    - [] preprocess script
+- [ ] Find neural network architecture that achieves high accuracy on CIFAR-100
     - [ ] Find paper that describes architecture (and hopefully hyperparameters)
-    - [ ] Implement architecture and train it without adversarial examples
+    - [] Implement architecture and train it without adversarial examples
     
     **or**
     
     - [ ] Find architecture and model parameters available to download
     - [ ] Write load script for model weights
 - [ ] Run PGD attack on network with standard training
-    - [ ] Edit the script from either https://github.com/MadryLab/mnist_challenge/blob/master/pgd_attack.py or https://github.com/MadryLab/cifar10_challenge/blob/master/pgd_attack.py
+    - [x] Edit the script from https://github.com/MadryLab/cifar10_challenge/blob/master/pgd_attack.py
     - [ ] Run the attack, gathering statistics
     - [ ] Display statistics in plots similar to the paper
 - [ ] Analyze network performance when trained with adversarial examples
-    - [ ] Train network with PGD adversarially perturbed examples
+    - [ ] Train network with PGD adversarially perturbed examples (see https://github.com/MadryLab/cifar10_challenge/blob/master/train.py for example)
     - [ ] Run a PGD attack, gathering statistics
     - [ ] Display statistics in plots similar to the paper
 

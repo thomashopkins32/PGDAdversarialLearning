@@ -15,7 +15,7 @@ torchvision.datasets.CIFAR100(root: str, train: bool = True, transform: Optional
     - [ ] preprocess script
 - [ ] Find neural network architecture that achieves high accuracy on CIFAR-100
     - [ ] Find paper that describes architecture (and hopefully hyperparameters)
-    - [] Implement architecture and train it without adversarial examples
+    - [ ] Implement architecture and train it without adversarial examples
     
     **or**
     

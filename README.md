@@ -10,9 +10,9 @@ torchvision.datasets.CIFAR100(root: str, train: bool = True, transform: Optional
 ```
 
 ## Empirical Evaluation of PGD Attack on CIFAR-100 (not in order):
-- [ ] Create scripts for downloading and preprocessing CIFAR-100 dataset (see above)
-    - [ ] download script
-    - [ ] preprocess script
+- [x] Create scripts for downloading and preprocessing CIFAR-100 dataset (see above)
+    - [x] download script
+    - [x] preprocess script
 - [ ] Find neural network architecture that achieves high accuracy on CIFAR-100
     - [ ] Find paper that describes architecture (and hopefully hyperparameters)
     - [ ] Implement architecture and train it without adversarial examples

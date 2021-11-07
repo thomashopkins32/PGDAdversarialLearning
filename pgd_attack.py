@@ -7,12 +7,15 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
+import matplotlib.pyplot as plt
+
+
 import numpy as np
 
 
 class LinfPGDAttack:
 
-    def __init__(self, model, epsilon, num_steps, step_size, random_start, loss_func):
+    def __init__(self, model, epsilon, num_steps, step_size, random_start):
         self.model = model
         self.epsilon = epsilon
         self.num_steps = num_steps
@@ -25,19 +28,19 @@ class LinfPGDAttack:
            examples within epsilon of x_nat in l_infinity norm."""
         if self.rand:
             x = x_nat + np.random.uniform(-self.epsilon, self.epsilon, x_nat.shape)
-            x = np.clip(x, 0, 255) # ensure valid pixel range
+            x = torch.clip(x, 0, 1) # ensure valid pixel range
         else:
-            x = x_nat.astype(np.float)
-        y = torch.tensor(y)
+            x = x_nat.astype(torch.float)
+
         for i in range(self.num_steps):
-            x = torch.tensor(x, requires_grad=True)
-            preds = self.model(x.double())
+            x.requires_grad = True
+            preds = self.model(x)
             loss = self.loss(preds, y)
             loss.backward()
             grad = x.grad
-            x = np.add(x.detach().numpy(), self.step_size * np.sign(grad))
-            x = np.clip(x, x_nat - self.epsilon, x_nat + self.epsilon)
-            x = np.clip(x, 0, 255) # ensure valid pixel range
+            x = x.detach() + self.step_size * torch.sign(grad)
+            x = torch.clip(x, x_nat - self.epsilon, x_nat + self.epsilon)
+            x = torch.clip(x, 0, 1) # ensure valid pixel range
         return x
 
 
@@ -58,8 +61,7 @@ if __name__ == '__main__':
                            config['epsilon'],
                            config['num_steps'],
                            config['step_size'],
-                           config['random_start'],
-                           config['loss_func'])
+                           config['random_start'])
 
     num_eval_examples = config['num_eval_examples']
     eval_batch_size = config['eval_batch_size']

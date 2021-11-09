@@ -14,7 +14,7 @@ import numpy as np
 from tqdm import tqdm
 import matplotlib.pyplot as plt
 
-from model import ResNet, BasicBlock
+from model import ResNet, BasicBlock, LeNet5
 from pgd_attack import LinfPGDAttack
 
 # get configuration for attack and learning
@@ -66,10 +66,13 @@ test_data = torch.utils.data.DataLoader(cifar_test_data,
                                         num_workers=5)
 train_data_iter = iter(train_data)
 test_data_iter = iter(test_data)
+print(f'Training on {len(train_data)*batch_size} data points for {max_num_training_steps} batch steps...')
+
 
 
 # TODO: option to load model from checkpoint
-model = ResNet(BasicBlock, [1, 2, 3, 4], num_classes=100).double()
+model = LeNet5(100).double()
+# model = ResNet(BasicBlock, [1, 2, 3, 4], num_classes=100).double()
 model.eval()
 
 # set up optimizer and learning rate schedule
@@ -98,7 +101,7 @@ natural_accuracy = tm.Accuracy()
 adversarial_accuracy = tm.Accuracy()
 
 training_time = 0.0
-for ii in tqdm(range(max_num_training_steps), total=max_num_training_steps):
+for ii in tqdm(range(max_num_training_steps+1), total=max_num_training_steps+1):
     x_batch, y_batch = next(train_data_iter)
     start = timer()
     # compute adversarial perturbations

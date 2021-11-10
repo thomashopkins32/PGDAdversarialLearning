@@ -145,6 +145,8 @@ for ii in tqdm(range(max_num_training_steps+1), total=max_num_training_steps+1):
             'optimizer_state_dict': optimizer.state_dict(),
             'scheduler_state_dict': lr_schedule.state_dict(),
             'loss': loss
-            }, model_dir + f'model_{ii}.pt')
+            }, model_dir + f'_{ii}.pt')
     lr_schedule.step()
 writer.close()
+torch.save(model.state_dict(), model_dir + f'final_{max_num_training_steps}')
+

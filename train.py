@@ -39,13 +39,9 @@ momentum = config['momentum']
 batch_size = config['training_batch_size']
 
 # set up data and model
-random_crop = torchvision.transforms.RandomCrop(32, padding=4)
-random_flip = torchvision.transforms.RandomVerticalFlip()
 to_tensor = torchvision.transforms.PILToTensor()
 to_double = torchvision.transforms.ConvertImageDtype(torch.double)
-cifar_transform = torchvision.transforms.Compose([random_crop,
-                                                  random_flip,
-                                                  to_tensor,
+cifar_transform = torchvision.transforms.Compose([to_tensor,
                                                   to_double])
 cifar_train_data = torchvision.datasets.CIFAR100(data_path,
                                                  transform=cifar_transform,
@@ -102,7 +98,11 @@ adversarial_accuracy = tm.Accuracy()
 
 training_time = 0.0
 for ii in tqdm(range(max_num_training_steps+1), total=max_num_training_steps+1):
-    x_batch, y_batch = next(train_data_iter)
+    try:
+        x_batch, y_batch = next(train_data_iter)
+    except StopIteration:
+        train_data_iter = iter(train_data)
+        x_batch_y_batch = next(train_data_iter)
     start = timer()
     # compute adversarial perturbations
     x_batch_adv = attack.perturb(x_batch, y_batch)
@@ -122,8 +122,8 @@ for ii in tqdm(range(max_num_training_steps+1), total=max_num_training_steps+1):
     # evaluation
     if ii % num_output_steps == 0:
         nat_outputs = model(x_batch)
-        nat_acc = natural_accuracy(nat_outputs, y_batch)
-        adv_acc = adversarial_accuracy(adv_outputs, y_batch)
+        nat_acc = natural_accuracy(nat_outputs, y_batch) * 100
+        adv_acc = adversarial_accuracy(adv_outputs, y_batch) * 100
 
         print(f'Step {ii}: ({datetime.now()})')
         print(f'    training nat accuracy {nat_acc:.4}%')

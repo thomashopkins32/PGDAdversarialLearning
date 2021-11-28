@@ -131,3 +131,4 @@ dmypy.json
 # Project specifics
 cifar100_data/
 models/
+cifar10_data/

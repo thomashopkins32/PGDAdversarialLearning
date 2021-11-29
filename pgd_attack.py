@@ -15,13 +15,14 @@ import numpy as np
 
 class LinfPGDAttack:
 
-    def __init__(self, model, epsilon, num_steps, step_size, random_start):
+    def __init__(self, model, epsilon, num_steps, step_size, random_start, device):
         self.model = model
         self.epsilon = epsilon
         self.num_steps = num_steps
         self.step_size = step_size
         self.rand = random_start
         self.loss = nn.CrossEntropyLoss()
+        self.device = device
 
     def perturb(self, x_nat, y):
         """Given a set of examples (x_nat, y), returns a set of adversarial
@@ -33,15 +34,16 @@ class LinfPGDAttack:
             x = x_nat.astype(torch.float)
 
         for i in range(self.num_steps):
+            x = x.to(self.device)
             x.requires_grad = True
             preds = self.model(x)
             loss = self.loss(preds, y)
             loss.backward()
-            grad = x.grad
-            x = x.detach() + self.step_size * torch.sign(grad)
+            grad = x.grad.cpu()
+            x = x.cpu().detach() + self.step_size * torch.sign(grad)
             x = torch.clip(x, x_nat - self.epsilon, x_nat + self.epsilon)
             x = torch.clip(x, 0, 1) # ensure valid pixel range
-        return x
+        return x.to(self.device)
 
 
 if __name__ == '__main__':

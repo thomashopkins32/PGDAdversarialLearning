@@ -3,24 +3,24 @@
   "model_dir": "models/LeNet5",
 
   "_comment": "===== DATASET CONFIGURATION =====",
-  "data_path": "cifar100_data",
-  "dataset": "cifar-100",
+  "data_path": "cifar10_data",
+  "dataset": "cifar-10",
 
   "_comment": "===== TRAINING CONFIGURATION =====",
   "torch_random_seed": 451760341,
   "np_random_seed": 216105420,
-  "max_num_epochs": 10,
+  "max_num_epochs": 1,
   "training_batch_size": 128,
   "step_size_start": 0.1,
   "step_size_schedule": 200,
   "step_size_decay": 0.1,
   "weight_decay": 0.0002,
   "momentum": 0.9,
-  "train_with_adversary": false,
+  "train_with_adversary": true,
 
   "_comment": "=====ADVERSARIAL EXAMPLES CONFIGURATION=====",
   "epsilon": 0.0313725,
-  "num_steps": 5,
+  "num_steps": 1,
   "step_size": 2.0,
   "random_start": true
 }

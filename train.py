@@ -52,11 +52,11 @@ def evaluate(model, loss_func, dataloader, attack, device='cpu'):
             adv_outputs = model(x_batch_adv)
             adv_loss = loss_func(adv_outputs, y_batch)
             total_adv_loss += adv_loss.item()
-            adv_acc.update(adv_outputs, y_batch)
+            adv_acc.update(adv_outputs.cpu(), y_batch.cpu())
         nat_outputs = model(x_batch)
         nat_loss = loss_func(nat_outputs, y_batch)
         total_nat_loss += nat_loss.item()
-        nat_acc.update(nat_outputs, y_batch)
+        nat_acc.update(nat_outputs.cpu(), y_batch.cpu())
         total_points += x_batch.shape[0]
     nat_ret = (total_nat_loss / total_points, nat_acc.compute().item() * 100)
     adv_ret = (total_adv_loss / total_points, adv_acc.compute().item() * 100)

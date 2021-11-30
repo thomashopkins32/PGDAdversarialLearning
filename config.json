@@ -9,7 +9,7 @@
   "_comment": "===== TRAINING CONFIGURATION =====",
   "torch_random_seed": 451760341,
   "np_random_seed": 216105420,
-  "max_num_epochs": 1,
+  "max_num_epochs": 3,
   "training_batch_size": 128,
   "step_size_start": 0.1,
   "step_size_schedule": 200,
@@ -20,7 +20,7 @@
 
   "_comment": "=====ADVERSARIAL EXAMPLES CONFIGURATION=====",
   "epsilon": 0.0313725,
-  "num_steps": 1,
+  "num_steps": 5,
   "step_size": 2.0,
   "random_start": true
 }

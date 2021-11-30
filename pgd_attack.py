@@ -27,6 +27,7 @@ class LinfPGDAttack:
     def perturb(self, x_nat, y):
         """Given a set of examples (x_nat, y), returns a set of adversarial
            examples within epsilon of x_nat in l_infinity norm."""
+        x_nat = x_nat.cpu()
         if self.rand:
             x = x_nat + np.random.uniform(-self.epsilon, self.epsilon, x_nat.shape)
             x = torch.clip(x, 0, 1) # ensure valid pixel range

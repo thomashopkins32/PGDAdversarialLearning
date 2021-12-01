@@ -3,7 +3,7 @@ Projected Gradient Descent for Adversarial Learning
 
 Based on the paper https://arxiv.org/pdf/1706.06083.pdf
 
-## Python Environmenet Setup
+## Python Environment Setup
 ```bash
 git clone https://github.com/thomashopkins32/PGDAdversarialLearning.git
 cd PGDAdversarialLearning
